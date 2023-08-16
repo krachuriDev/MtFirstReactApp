@@ -1,0 +1,41 @@
+{
+  "name": "myrectapp",
+  "version": "1.0.0",
+  "description": "This is a place to store all the dependencies",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krachuriDev/MyFirstReactApp.git"
+  },
+  "keywords": [
+    "Karthik",
+    "practiceReact",
+    "excelInReact"
+  ],
+  "author": "Karthik Rachuri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krachuriDev/MyFirstReactApp/issues"
+  },
+  "homepage": "https://github.com/krachuriDev/MyFirstReactApp#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "fontawesome": "^5.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserList": [
+    "last 3 versions"
+  ]
+}
