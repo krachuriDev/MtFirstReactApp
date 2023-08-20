@@ -1,10 +1,10 @@
-.headerDiv{
-  display:flex;
+.headerDiv {
+  display: flex;
   justify-content: space-between;
-  border:1px solid palevioletred;
+  border: 1px solid palevioletred;
 }
 
-.logo{
+.logo {
   width: 200px;
   height: 150px;
 }
@@ -13,52 +13,58 @@
   display:block;
 } */
 
-.navItems>ul{
+.navItems > ul {
   display: flex;
   list-style: none;
   font-weight: 750;
 }
 
-.navItems>ul>li{
+.navItems > ul > li {
   padding: 15px;
 }
 
-.searchRestro{
-  margin:10px;
-  width:75%;
+.searchRestro {
+  margin: 10px;
+  width: 75%;
 }
 
-.searchBtn{
-  margin:10px;
+.searchBtn {
+  margin: 10px;
 }
 
-.searchTxt{
-  width:20%;
+.searchTxt {
+  width: 20%;
 }
 
-.restroContainer{
+.restroContainer {
   display: flex;
   flex-wrap: wrap;
-  width:100%;
+  width: 100%;
 }
 
-.restroCard{
-  width:180px;
-  padding:5px;
-  background-color:whitesmoke;
+.restroCard {
+  width: 180px;
+  padding: 5px;
+  background-color: whitesmoke;
 }
 
-.restroCard:hover{
-  border:1px solid goldenrod;
+.restroCard:hover {
+  border: 1px solid goldenrod;
 }
 
-.restroLogo{
-  margin:5px;
-  width:95%;
+.restroLogo {
+  margin: 5px;
+  width: 95%;
 }
 
-.restroDetails{
+.restroDetails {
   font-weight: bold;
   justify-content: space-evenly;
   display: flex;
+}
+
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 10px;
 }
