@@ -1,4 +1,4 @@
-import RESTRO_LOGO_URL from "../Utils/constants";
+import { RESTRO_LOGO_URL } from "../Utils/constants";
 
 const Restro = ({ response }) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =

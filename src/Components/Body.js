@@ -1,6 +1,8 @@
 import Restro from "../Components/Restro";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import { RESTRO_LIST_URL } from "../Utils/constants";
 
 const Body = () => {
   //Normal JS variable
@@ -23,16 +25,15 @@ const Body = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.491942&lng=78.318705&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
+      const response = await fetch(RESTRO_LIST_URL);
       const resData = await response.json();
+      console.log(resData);
       SetlistOfRestuarants(
-        resData.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        resData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       SetfilteredListOfRestuarants(
-        resData.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        resData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
     } catch (err) {
@@ -71,17 +72,19 @@ const Body = () => {
           type="button"
           value="Top Rated"
           onClick={() => {
-            const filteredRestuarants = listOfRestuarants.filter(
+            const filteredTopRatedRestuarants = listOfRestuarants.filter(
               (res) => res?.info?.avgRating >= 4,
               {}
             );
-            SetfilteredListOfRestuarants(filteredRestuarants);
+            SetfilteredListOfRestuarants(filteredTopRatedRestuarants);
           }}
         ></input>
       </div>
       <div className="restroContainer">
         {filteredListOfRestuarants.map((res) => (
-          <Restro key={res.info.id} response={res.info} />
+          <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
+            <Restro response={res.info} />
+          </Link>
         ))}
       </div>
     </div>

@@ -3,4 +3,10 @@ export const LOGO_URL =
 const RESTRO_LOGO_URL =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
-export default RESTRO_LOGO_URL;
+const RESTRO_API_URL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.491942&lng=78.318705&restaurantId=";
+
+const RESTRO_LIST_URL =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.438464&lng=78.381048&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+
+export { RESTRO_LOGO_URL, RESTRO_API_URL, RESTRO_LIST_URL };
