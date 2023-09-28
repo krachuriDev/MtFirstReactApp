@@ -9,4 +9,14 @@ const RESTRO_API_URL =
 const RESTRO_LIST_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.438464&lng=78.381048&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
-export { RESTRO_LOGO_URL, RESTRO_API_URL, RESTRO_LIST_URL };
+const USERINFO_API_URL = "https://api.github.com/users/krachuridev";
+
+const AVG_RESTAUARANT_RATING = 4;
+
+export {
+  RESTRO_LOGO_URL,
+  RESTRO_API_URL,
+  RESTRO_LIST_URL,
+  AVG_RESTAUARANT_RATING,
+  USERINFO_API_URL,
+};

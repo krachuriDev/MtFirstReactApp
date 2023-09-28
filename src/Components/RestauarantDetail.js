@@ -18,7 +18,6 @@ const RestuarantDetail = () => {
   const fetchData = async () => {
     const data = await fetch(RESTRO_API_URL + resId);
     const resData = await data.json();
-    console.info(resData);
     setRestroData(resData);
   };
 

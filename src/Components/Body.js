@@ -2,11 +2,14 @@ import Restro from "../Components/Restro";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { RESTRO_LIST_URL } from "../Utils/constants";
+import { RESTRO_LIST_URL, AVG_RESTAUARANT_RATING } from "../Utils/constants";
 
 const Body = () => {
   //Normal JS variable
   //const resData = restroList;
+
+  // The below function will return a array of two values i.e stateValue & function to update the state value.
+  console.info(useState());
 
   //Use state variable below to render the changes of data into UI.
   const [listOfRestuarants, SetlistOfRestuarants] = useState([]);
@@ -73,7 +76,7 @@ const Body = () => {
           value="Top Rated"
           onClick={() => {
             const filteredTopRatedRestuarants = listOfRestuarants.filter(
-              (res) => res?.info?.avgRating >= 4,
+              (res) => res?.info?.avgRating >= AVG_RESTAUARANT_RATING,
               {}
             );
             SetfilteredListOfRestuarants(filteredTopRatedRestuarants);
