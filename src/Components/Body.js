@@ -8,8 +8,8 @@ const Body = () => {
   //Normal JS variable
   //const resData = restroList;
 
-  // The below function will return a array of two values i.e stateValue & function to update the state value.
-  console.info(useState());
+  // The below function will return a array of two values i.e stateValue(undefined) & function to update the state value.
+  //console.info(useState());
 
   //Use state variable below to render the changes of data into UI.
   const [listOfRestuarants, SetlistOfRestuarants] = useState([]);

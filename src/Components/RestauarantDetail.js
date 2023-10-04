@@ -6,17 +6,29 @@ import Shimmer from "./Shimmer";
 const RestuarantDetail = () => {
   const [restroData, setRestroData] = useState(null);
 
+  const abortController = new AbortController();
+
   ///If there is no dependency array present, useEffect() gets called for every render.
   ///If there is a dependency array present, useEffect() gets called whenever there is a change in the dependency values.
 
   useEffect(() => {
     fetchData();
+
+    //The cleanup function gets called whenever the dependency array changes
+    //OR when the component gets unmounted(when we navigate to a different component).
+    return () => {
+      console.info("Restauarant detail component gets re-rendered/unmounted");
+      //cancelling the network request when the user navigates to a different component/re-rendering
+      abortController.abort();
+    };
   }, []);
 
   const { resId } = useParams();
 
   const fetchData = async () => {
-    const data = await fetch(RESTRO_API_URL + resId);
+    const data = await fetch(RESTRO_API_URL + resId, {
+      signal: abortController.signal,
+    });
     const resData = await data.json();
     setRestroData(resData);
   };

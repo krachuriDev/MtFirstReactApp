@@ -16,8 +16,6 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
-    console.info("child componentDidMount called");
-
     const user = await fetch(USERINFO_API_URL);
 
     const userData = await user.json();
@@ -25,6 +23,10 @@ class UserClass extends React.Component {
     this.setState({
       userInfo: userData,
     });
+
+    this.timerId = setInterval(() => {
+      console.info("child componentDidMount called");
+    }, 1000);
 
     console.info(userData);
   }
@@ -38,6 +40,7 @@ class UserClass extends React.Component {
     // Perform any clean-up such as invalidating timers, cancelling network requests & cleaning up
     //  any subscriptions made in the componentDidMount methods.
     console.info("child componentWillUnmount called");
+    clearInterval(this.timerId);
   }
 
   render() {
