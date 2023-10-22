@@ -1,4 +1,4 @@
-import Restro from "../Components/Restro";
+import RestroCard from "./RestroCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
@@ -30,7 +30,6 @@ const Body = () => {
     try {
       const response = await fetch(RESTRO_LIST_URL);
       const resData = await response.json();
-      console.log(resData);
       SetlistOfRestuarants(
         resData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
@@ -40,7 +39,7 @@ const Body = () => {
           ?.restaurants
       );
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -86,7 +85,7 @@ const Body = () => {
       <div className="restroContainer">
         {filteredListOfRestuarants.map((res) => (
           <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
-            <Restro response={res.info} />
+            <RestroCard response={res.info} />
           </Link>
         ))}
       </div>

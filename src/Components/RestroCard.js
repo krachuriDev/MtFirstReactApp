@@ -1,6 +1,6 @@
 import { RESTRO_LOGO_URL } from "../Utils/constants";
 
-const Restro = ({ response }) => {
+const RestroCard = ({ response }) => {
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     response;
   return (
@@ -21,4 +21,4 @@ const Restro = ({ response }) => {
   );
 };
 
-export default Restro;
+export default RestroCard;

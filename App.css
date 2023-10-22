@@ -128,3 +128,27 @@ a {
   height: 10px;
   background-color: #f0f0f0;
 }
+
+.menuItemsContainer {
+  padding: 10px;
+  background-color: #f0f0f0;
+  width: min-content;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menuItem {
+  background-color: ivory;
+  text-wrap: wrap;
+}
+
+.menuItemLogo {
+  width: 200px;
+  height: 100px;
+}
+
+.filterVegItems {
+  margin: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
