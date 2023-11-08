@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { RESTRO_LOGO_URL } from "../Utils/constants";
+import { RESTRO_LOGO_URL, VEG_FILTER } from "../Utils/constants";
 import { useState, useEffect } from "react";
 import { RESTRO_API_URL } from "../Utils/constants";
 
@@ -77,7 +77,8 @@ const RestuarantDetail = () => {
           onChange={(event) => {
             if (event.target.checked === true) {
               const filteredData = filteredMenuItems.filter(
-                (item) => item.card.info.itemAttribute.vegClassifier === "VEG"
+                (item) =>
+                  item.card.info.itemAttribute.vegClassifier === VEG_FILTER
               );
               SetFilteredMenuItems(filteredData);
             } else {

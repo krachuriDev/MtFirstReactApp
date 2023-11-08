@@ -56,6 +56,9 @@ const Body = () => {
           value={filterRestro}
           onChange={(event) => {
             setFilterRestro(event.target.value);
+            if (event.target.value === "") {
+              SetfilteredListOfRestuarants(listOfRestuarants);
+            }
           }}
         ></input>
         <input
@@ -63,10 +66,16 @@ const Body = () => {
           type="button"
           value="Search"
           onClick={() => {
-            const filteredRestuarants = listOfRestuarants.filter((res) =>
-              res?.info?.name.toLowerCase().includes(filterRestro.toLowerCase())
-            );
-            SetfilteredListOfRestuarants(filteredRestuarants);
+            if (filterRestro.length > 3) {
+              const filteredRestuarants = listOfRestuarants.filter((res) =>
+                res?.info?.name
+                  .toLowerCase()
+                  .includes(filterRestro.toLowerCase())
+              );
+              SetfilteredListOfRestuarants(filteredRestuarants);
+            } else {
+              alert("Please enter more than 3 characters to search");
+            }
           }}
         ></input>
         <input

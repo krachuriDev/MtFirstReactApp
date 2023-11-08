@@ -13,10 +13,13 @@ const USERINFO_API_URL = "https://api.github.com/users/krachuridev";
 
 const AVG_RESTAUARANT_RATING = 4;
 
+const VEG_FILTER = "VEG";
+
 export {
   RESTRO_LOGO_URL,
   RESTRO_API_URL,
   RESTRO_LIST_URL,
   AVG_RESTAUARANT_RATING,
   USERINFO_API_URL,
+  VEG_FILTER,
 };
