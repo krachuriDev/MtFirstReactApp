@@ -1,24 +1,46 @@
+import { useContext } from "react";
 import { RESTRO_LOGO_URL } from "../Utils/constants";
+import UserContext from "../Utils/UserContext";
 
 const RestroCard = ({ response }) => {
-  const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
-    response;
+  const { name, cuisines, avgRating, sla, cloudinaryImageId } = response;
+  const { loggedinUser } = useContext(UserContext);
+
   return (
-    <div className="restroCard">
+    <div className="w-56 px-3 py-2 hover:bg-slate-200">
       <img
-        className="restroLogo"
+        className="rounded-lg"
         src={RESTRO_LOGO_URL + cloudinaryImageId}
         alt="Error in loading Image"
       ></img>
-      <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <div className="restroDetails">
-        <span>{avgRating + "*"}</span>
-        <span>{costForTwo}</span>
-        <span>{sla.deliveryTime + " mins"}</span>
+      <h3 className="truncate font-semibold font-sans">{name}</h3>
+      <div className="font-semibold">
+        <span>{avgRating + "*, "}</span>
+        <span>{sla?.deliveryTime + " mins"}</span>
       </div>
+      <h4 className="text-gray-500 truncate font-sans">
+        {cuisines.join(", ")}
+      </h4>
+      <h4 className="font-bold font-sans">{loggedinUser}</h4>
     </div>
   );
+};
+
+///Higher Order Component -- which takes a component as input and returns a enhanced version of component
+
+/// input - RestroCard=> EnhancedRestroCard
+
+export const EnhancedRestroCard = (RestroCard) => {
+  return (props) => {
+    return (
+      <>
+        <label className="text-white bg-black m-2 rounded-lg absolute pl-1">
+          Promoted
+        </label>
+        <RestroCard {...props}></RestroCard>
+      </>
+    );
+  };
 };
 
 export default RestroCard;

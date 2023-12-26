@@ -25,7 +25,7 @@ class AboutClass extends React.Component {
     return (
       <div>
         <h2>This is a sample practice application built on React</h2>
-        <UserClass></UserClass>
+        {<UserClass></UserClass>}
       </div>
     );
   }

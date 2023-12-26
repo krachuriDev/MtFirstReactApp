@@ -1,5 +1,5 @@
-import RestroCard from "./RestroCard";
-import { useEffect, useState } from "react";
+import RestroCard, { EnhancedRestroCard } from "./RestroCard";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { RESTRO_LIST_URL, AVG_RESTAUARANT_RATING } from "../Utils/constants";
@@ -16,13 +16,14 @@ const Body = () => {
   const [filteredListOfRestuarants, SetfilteredListOfRestuarants] = useState(
     []
   );
-
   const [filterRestro, setFilterRestro] = useState("");
+
+  const RestroCardPromoted = EnhancedRestroCard(RestroCard);
 
   //Whenever state variables update, React triggers reconciliation cycle/algorithm(re-renders the component.)
 
   useEffect(() => {
-    //Need to call a API to fetch the data and bind it to the UI.
+    //Need to call an API to fetch the data and bind it to the UI.
     fetchData();
   }, []);
 
@@ -48,10 +49,10 @@ const Body = () => {
     <Shimmer></Shimmer>
   ) : (
     <div className="body">
-      <div className="searchRestro">
+      <div className="flex">
         <input
-          className="searchTxt"
-          type="search"
+          className="border border-solid border-black px-2 mx-2 rounded-lg"
+          type="text"
           placeholder="Search restuarant by name"
           value={filterRestro}
           onChange={(event) => {
@@ -62,7 +63,7 @@ const Body = () => {
           }}
         ></input>
         <input
-          className="searchBtn"
+          className="px-2 mx-2 bg-blue-500 text-white py-2 rounded-lg"
           type="button"
           value="Search"
           onClick={() => {
@@ -79,7 +80,7 @@ const Body = () => {
           }}
         ></input>
         <input
-          className="filter-btn"
+          className="px-2 mx-2 bg-blue-500 text-white py-2 rounded-lg"
           type="button"
           value="Top Rated"
           onClick={() => {
@@ -91,10 +92,14 @@ const Body = () => {
           }}
         ></input>
       </div>
-      <div className="restroContainer">
+      <div className="flex py-3 flex-wrap justify-center">
         {filteredListOfRestuarants.map((res) => (
           <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
-            <RestroCard response={res.info} />
+            {res.info.avgRating >= 4 ? (
+              <RestroCardPromoted response={res.info} />
+            ) : (
+              <RestroCard response={res.info} />
+            )}
           </Link>
         ))}
       </div>

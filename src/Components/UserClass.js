@@ -51,7 +51,7 @@ class UserClass extends React.Component {
     return name === null ? (
       <ShimmerClass></ShimmerClass>
     ) : (
-      <div className="user-card">
+      <div className="p-3 border border-solid border-gray-400 w-max bg-emerald-200 text-black">
         <img
           src={avatar_url}
           height="100px"

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/Components/Header";
 import Body from "./src/Components/Body";
@@ -8,6 +8,10 @@ import Contact from "./src/Components/Contact";
 import Error from "./src/Components/Error";
 import RestuarantDetail from "./src/Components/RestauarantDetail";
 import useOnlineStatus from "./src/Utils/useOnlineStatus";
+import UserContext from "./src/Utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./src/Utils/appStore";
+import Cart from "./src/Components/Cart";
 
 const AppLayout = () => {
   const onlineStatus = useOnlineStatus();
@@ -20,10 +24,14 @@ const AppLayout = () => {
   return (
     <div className="appLayout">
       {/* Need to place header, body & footer Component  */}
-      <Header></Header>
-      {/* Need to place the outlet to load the components in the body whenever the user navigates
+      <Provider store={appStore}>
+        <UserContext.Provider value={{ loggedinUser: "Sachin Tendulkar" }}>
+          <Header></Header>
+        </UserContext.Provider>
+        {/* Need to place the outlet to load the components in the body whenever the user navigates
        to a different screen */}
-      <Outlet></Outlet>
+        <Outlet></Outlet>
+      </Provider>
     </div>
   );
 };
@@ -58,6 +66,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestuarantDetail></RestuarantDetail>,
+      },
+      {
+        path: "/cart",
+        element: <Cart></Cart>,
       },
     ],
     errorElement: <Error></Error>,

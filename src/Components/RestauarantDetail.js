@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { RESTRO_LOGO_URL, VEG_FILTER } from "../Utils/constants";
+import { FOOD_ITEM_CATEGORY, VEG_FILTER } from "../Utils/constants";
 import { useState, useEffect } from "react";
 import { RESTRO_API_URL } from "../Utils/constants";
+import RestuarantCategory from "./RestuarantCategory";
 
 const RestuarantDetail = () => {
   const { resId } = useParams();
@@ -10,6 +11,12 @@ const RestuarantDetail = () => {
   const [restroData, SetRestroData] = useState(null);
   const [menuItems, SetMenuItems] = useState([]);
   const [filteredMenuItems, SetFilteredMenuItems] = useState([]);
+
+  const [showItems, setShowItems] = useState(0);
+
+  // const showCategoryItems = (index) => {
+  //   setShowItems(index);
+  // };
 
   const abortController = new AbortController();
 
@@ -36,12 +43,14 @@ const RestuarantDetail = () => {
       const resData = await data.json();
       SetRestroData(resData);
       SetMenuItems(
-        resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-          ?.card?.card.itemCards
+        resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+          (card) => card?.card?.card?.["@type"] == FOOD_ITEM_CATEGORY
+        )
       );
       SetFilteredMenuItems(
-        resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-          ?.card?.card?.itemCards
+        resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+          (card) => card?.card?.card?.["@type"] == FOOD_ITEM_CATEGORY
+        )
       );
     } catch (err) {
       console.error(err);
@@ -55,24 +64,22 @@ const RestuarantDetail = () => {
 
   return (
     <div>
-      <div className="restroScreen">
-        <h2>{name}</h2>
-        <br></br>
-        <span>{labels[1].message}</span>
-        <div>
+      <div className="p-2 m-2 w-4/12">
+        <h2 className="font-semibold py-1">{name}</h2>
+        <span className="font-sans text-gray-500">{labels[1].message}</span>
+        <div className="font-sans text-gray-500">
           <span>{cuisines.join(", ")}</span>
+          <span>{", " + avgRating + " *"}</span>
         </div>
-        <div>
-          <span>{sla?.deliveryTime + " mins"}</span>----
+        <div className="font-sans text-gray-500">
+          <span>{sla?.deliveryTime + " mins, "}</span>
           <span>{costForTwoMessage}</span>
         </div>
-        <div>
-          <span>{avgRating + " *"}</span>
-        </div>
       </div>
-      <div className="filterVegItems">
-        <label>Veg Only </label>
+      {/* <div className="flex flex-wrap py-2 items-center">
+        <label className="font-semibold font-sans px-3">VegOnly</label>
         <input
+          className="px-2 rounded-lg"
           type="checkbox"
           onChange={(event) => {
             if (event.target.checked === true) {
@@ -86,30 +93,17 @@ const RestuarantDetail = () => {
             }
           }}
         ></input>
-      </div>
-      <div className="menuItemsContainer">
-        {filteredMenuItems.map((item) => (
-          <div key={item?.card?.info?.id} className="menuItem">
-            <h4>{item?.card?.info?.name}</h4>
-            <img
-              className="menuItemLogo"
-              src={RESTRO_LOGO_URL + item?.card?.info?.imageId}
-              alt="Error in loading Image"
-            ></img>
-            <br></br>
-            <span>
-              {item?.card?.info?.description
-                ? item?.card?.info?.description + ", "
-                : ""}
-            </span>
-            <span>{"$" + item?.card?.info?.price / 100}</span>
-            <br></br>
-            <span>
-              ______________________________________________________________________________________
-            </span>
-          </div>
-        ))}
-      </div>
+      </div> */}
+      {menuItems.map((card, index) => (
+        <RestuarantCategory
+          key={card?.card?.card?.title}
+          card={card}
+          showItems={showItems === index}
+          showCategoryItems={() => {
+            showItems == index ? setShowItems(null) : setShowItems(index);
+          }}
+        />
+      ))}
     </div>
   );
 };
