@@ -16,6 +16,7 @@ const Body = () => {
   const [filteredListOfRestuarants, SetfilteredListOfRestuarants] = useState(
     []
   );
+
   const [filterRestro, setFilterRestro] = useState("");
 
   const RestroCardPromoted = EnhancedRestroCard(RestroCard);
@@ -32,11 +33,11 @@ const Body = () => {
       const response = await fetch(RESTRO_LIST_URL);
       const resData = await response.json();
       SetlistOfRestuarants(
-        resData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        resData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       SetfilteredListOfRestuarants(
-        resData.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        resData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
     } catch (err) {
@@ -51,7 +52,7 @@ const Body = () => {
     <div className="body">
       <div className="flex">
         <input
-          className="border border-solid border-black px-2 mx-2 rounded-lg"
+          className="border border-solid border-black px-2 mx-2 rounded-lg w-1/6"
           type="text"
           placeholder="Search restuarant by name"
           value={filterRestro}

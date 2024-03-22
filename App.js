@@ -18,7 +18,7 @@ const AppLayout = () => {
 
   if (!onlineStatus)
     return (
-      <h2>Looks like you are offline! Please check you internet connection.</h2>
+      <h2>Looks like you are offline! Please check your internet connection.</h2>
     );
 
   return (

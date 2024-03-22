@@ -6,6 +6,7 @@ import UserContext from "../Utils/UserContext";
 import { useSelector } from "react-redux";
 
 const Header = () => {
+
   const [btnName, setBtnName] = useState("Login");
 
   const onlineStatus = useOnlineStatus();
@@ -17,14 +18,13 @@ const Header = () => {
   //const store= useSelector((store)=>store);
   // When we subscribe to the entire store, there will be a performance hit since any change happens in any sliced portion
   // it will affect the subcribed components for which the component might not use.
-  // Eg:- Below we are subscribing to the cart portion of the store.
+  // Eg:- Below we are subscribing to the cart sliced portion of the store.
   const cartData = useSelector((store) => store.cart.items);
-  console.info(cartData);
 
   return (
     <div className="flex justify-between">
-      <div className="w-24">
-        <img src={LOGO_URL} alt="Failed to load the Image"></img>
+      <div className="w-32 h-24">
+        <img src={LOGO_URL} alt="Failed to load the Image" className="rounded-lg"></img>
       </div>
       <div className="flex items-center">
         <ul className="flex">

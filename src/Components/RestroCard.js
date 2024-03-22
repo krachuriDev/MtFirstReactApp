@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { RESTRO_LOGO_URL } from "../Utils/constants";
 import UserContext from "../Utils/UserContext";
+import React from 'react';
 
 const RestroCard = ({ response }) => {
   const { name, cuisines, avgRating, sla, cloudinaryImageId } = response;
@@ -21,7 +22,7 @@ const RestroCard = ({ response }) => {
       <h4 className="text-gray-500 truncate font-sans">
         {cuisines.join(", ")}
       </h4>
-      <h4 className="font-bold font-sans">{loggedinUser}</h4>
+      {/* <h4 className="font-bold font-sans">{loggedinUser}</h4> */}
     </div>
   );
 };
@@ -33,14 +34,13 @@ const RestroCard = ({ response }) => {
 export const EnhancedRestroCard = (RestroCard) => {
   return (props) => {
     return (
-      <>
+      <React.Fragment>
         <label className="text-white bg-black m-2 rounded-lg absolute pl-1">
           Promoted
         </label>
-        <RestroCard {...props}></RestroCard>
-      </>
+        <RestroCard {...props} ></RestroCard>
+      </React.Fragment >
     );
   };
 };
-
 export default RestroCard;

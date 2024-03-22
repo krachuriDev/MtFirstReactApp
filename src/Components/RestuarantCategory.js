@@ -22,7 +22,7 @@ const RestuarantCategory = ({ card, showItems, showCategoryItems }) => {
          and assign it to the nearest parent component and pass the state as props */}
 
         {/* props drilling - 
-         When we pass the props from parent component to multiple child components without using the props,
+         When we pass the props from parent component to multiple child components using the props,
          until it reaches the leaf component it's called props drilling.  */}
 
         {showItems && <RestuarantCategoryItems items={itemCards} />}
