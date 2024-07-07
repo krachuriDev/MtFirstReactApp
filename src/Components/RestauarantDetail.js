@@ -4,6 +4,7 @@ import { FOOD_ITEM_CATEGORY, VEG_FILTER } from "../Utils/constants";
 import { useState, useEffect } from "react";
 import { RESTRO_API_URL } from "../Utils/constants";
 import RestuarantCategory from "./RestuarantCategory";
+import RestroDetailShimmer from "./RestroDetailShimmer";
 
 const RestuarantDetail = () => {
   const { resId } = useParams();
@@ -43,12 +44,12 @@ const RestuarantDetail = () => {
       const resData = await data.json();
       SetRestroData(resData);
       SetMenuItems(
-        resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+        resData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
           (card) => card?.card?.card?.["@type"] == FOOD_ITEM_CATEGORY
         )
       );
       SetFilteredMenuItems(
-        resData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+        resData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
           (card) => card?.card?.card?.["@type"] == FOOD_ITEM_CATEGORY
         )
       );
@@ -57,10 +58,10 @@ const RestuarantDetail = () => {
     }
   };
 
-  if (restroData === null) return <Shimmer></Shimmer>;
+  if (restroData === null) return <RestroDetailShimmer></RestroDetailShimmer>;
 
   const { name, sla, costForTwoMessage, cuisines, avgRating, labels } =
-    restroData?.data?.cards[0]?.card?.card?.info;
+    restroData?.data?.cards[2]?.card?.card?.info;
 
   return (
     <div>

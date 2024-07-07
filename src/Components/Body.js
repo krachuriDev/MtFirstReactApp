@@ -32,6 +32,7 @@ const Body = () => {
     try {
       const response = await fetch(RESTRO_LIST_URL);
       const resData = await response.json();
+      
       SetlistOfRestuarants(
         resData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
@@ -56,6 +57,7 @@ const Body = () => {
           type="text"
           placeholder="Search restuarant by name"
           value={filterRestro}
+          data-testid="searchInput"
           onChange={(event) => {
             setFilterRestro(event.target.value);
             if (event.target.value === "") {
@@ -63,10 +65,8 @@ const Body = () => {
             }
           }}
         ></input>
-        <input
+        <button
           className="px-2 mx-2 bg-blue-500 text-white py-2 rounded-lg"
-          type="button"
-          value="Search"
           onClick={() => {
             if (filterRestro.length > 3) {
               const filteredRestuarants = listOfRestuarants.filter((res) =>
@@ -79,11 +79,9 @@ const Body = () => {
               alert("Please enter more than 3 characters to search");
             }
           }}
-        ></input>
-        <input
+        >Search</button>
+        <button
           className="px-2 mx-2 bg-blue-500 text-white py-2 rounded-lg"
-          type="button"
-          value="Top Rated"
           onClick={() => {
             const filteredTopRatedRestuarants = listOfRestuarants.filter(
               (res) => res?.info?.avgRating >= AVG_RESTAUARANT_RATING,
@@ -91,7 +89,7 @@ const Body = () => {
             );
             SetfilteredListOfRestuarants(filteredTopRatedRestuarants);
           }}
-        ></input>
+        >Top Rated</button>
       </div>
       <div className="flex py-3 flex-wrap justify-center">
         {filteredListOfRestuarants.map((res) => (

@@ -14,7 +14,7 @@ const RestuarantCategoryItems = ({ items }) => {
       {items.map((item) => {
         const { id, name, price, imageId, description } = item?.card?.info;
         return (
-          <div key={id} className="border-b-2 border-gray-300">
+          <div key={id} className="border-b-2 border-gray-300" data-testid="foodItem">
             <div className="flex justify-between py-2">
               <div className="w-9/12">
                 <span className="font-semibold text-sm">{name}</span>
