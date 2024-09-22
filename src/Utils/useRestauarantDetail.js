@@ -8,7 +8,7 @@ const useRestuarantDetail = (resId) => {
 
   //Need to fetch the data based on the input parameter and return the data.
   ///If there is no dependency array present, useEffect() gets called for every render.
-  ///If there is a dependency array present, useEffect() gets called whenever there is a change in the dependency values.
+  ///If there is a dependency array present, useEffect() gets called whenever there is a change in the dependency values and on the initial render.
 
   useEffect(() => {
     fetchData();
